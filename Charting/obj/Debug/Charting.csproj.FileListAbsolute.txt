@@ -1,0 +1,12 @@
+C:\Cs Projects\Charting\Charting\bin\Debug\Charting.exe.config
+C:\Cs Projects\Charting\Charting\bin\Debug\Charting.exe
+C:\Cs Projects\Charting\Charting\bin\Debug\Charting.pdb
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.csprojAssemblyReference.cache
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.MainForm.resources
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.Properties.Resources.resources
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.csproj.GenerateResource.cache
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.csproj.CoreCompileInputs.cache
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.exe
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.pdb
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.ChartPropertiesDialog.resources
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.ManageDataDialog.resources
