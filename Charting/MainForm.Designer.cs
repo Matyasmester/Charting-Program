@@ -49,6 +49,7 @@
             this.MainChart.Location = new System.Drawing.Point(12, 26);
             this.MainChart.Name = "MainChart";
             series2.ChartArea = "ChartArea1";
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             series2.Legend = "Legend1";
             series2.Name = "Default";
             this.MainChart.Series.Add(series2);
@@ -87,6 +88,8 @@
             this.Controls.Add(this.ChartPropertiesButton);
             this.Controls.Add(this.ManageDataButton);
             this.Controls.Add(this.MainChart);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Charting";
             this.Load += new System.EventHandler(this.MainForm_Load);

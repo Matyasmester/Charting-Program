@@ -19,22 +19,36 @@ namespace Charting
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            MainChart.Series["Default"].Points.AddXY("Ajay", "10000");
-            MainChart.Series["Default"].Points.AddXY("Ramesh", "8000");
-            MainChart.Series["Default"].Points.AddXY("Ankit", "7000");
-            MainChart.Series["Default"].Points.AddXY("Gurmeet", "10000");
-            MainChart.Series["Default"].Points.AddXY("Suresh", "8500");
+            Font font = new Font("Microsoft Sans Serif", 12f);
 
-            MainChart.Titles.Add("Salary Chart");
+            MainChart.Titles.Add("title");
 
-            MainChart.Series["Default"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            MainChart.Titles[0].Font = font;
+
+            MainChart.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
         }
 
         public void ApplyProperties(List<KeyValuePair<string, string>> properties)
         {
-            MainChart.Width = Convert.ToInt32(properties.Find(x => x.Key.Equals("Width")).Value);
-            MainChart.Height = Convert.ToInt32(properties.Find(x => x.Key.Equals("Height")).Value);
+            string width = properties.Find(x => x.Key.Equals("Width")).Value;
+            string height = properties.Find(x => x.Key.Equals("Height")).Value;
+
+            MainChart.Width = width == string.Empty ? MainChart.Width : Convert.ToInt32(width);
+            MainChart.Height = height == string.Empty ? MainChart.Height : Convert.ToInt32(height);
+
             MainChart.Series[0].Name = properties.Find(x => x.Key.Equals("SeriesName")).Value;
+
+            MainChart.Titles.Clear();
+            MainChart.Titles.Add(properties.Find(x => x.Key.Equals("Title")).Value);
+            MainChart.Titles[0].Font = new Font("Microsoft Sans Serif", 12f);
+        }
+
+        public void ApplyData(List<KeyValuePair<string, string>> allData)
+        {
+            foreach (KeyValuePair<string, string> piece in allData)
+            {
+                MainChart.Series[0].Points.AddXY(piece.Key, piece.Value);
+            }
         }
         
         private void Chart1_Click(object sender, EventArgs e)
@@ -44,7 +58,7 @@ namespace Charting
 
         private void ManageDataButton_Click(object sender, EventArgs e)
         {
-            var form = new ManageDataDialog();
+            var form = new ManageDataDialog(this);
             form.ShowDialog(this);
         }
 

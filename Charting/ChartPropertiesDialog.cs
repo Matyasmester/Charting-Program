@@ -33,6 +33,7 @@ namespace Charting
             allProperties.Add(new KeyValuePair<string, string>("Width", WidthBox.Text));
             allProperties.Add(new KeyValuePair<string, string>("Height", HeightBox.Text));
             allProperties.Add(new KeyValuePair<string, string>("SeriesName", SeriesNameBox.Text));
+            allProperties.Add(new KeyValuePair<string, string>("Title", ChartTitleBox.Text));
             PassProperties pass = new PassProperties(active.ApplyProperties);
             pass(allProperties);
             allProperties.Clear();
