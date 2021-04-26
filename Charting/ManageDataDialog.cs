@@ -13,9 +13,9 @@ namespace Charting
     public partial class ManageDataDialog : Form
     {
         List<TextBox> allNameBoxes = new List<TextBox>();
-        List<TextBox> allValueBoxes = new List<TextBox>();
+        List<NumericUpDown> allValueBoxes = new List<NumericUpDown>();
 
-        List<KeyValuePair<string, string>> allData = new List<KeyValuePair<string, string>>();
+        List<KeyValuePair<string, int>> allData = new List<KeyValuePair<string, int>>();
 
         MainForm active;
 
@@ -24,7 +24,7 @@ namespace Charting
 
         int fields = MinFields;
 
-        public delegate void PassData(List<KeyValuePair<string, string>> allData);
+        public delegate void PassData(List<KeyValuePair<string, int>> allData);
 
         private void SendData()
         {
@@ -32,7 +32,7 @@ namespace Charting
 
             for (int i = 0; i < allNameBoxes.Count; i++)
             {
-                KeyValuePair<string, string> data = new KeyValuePair<string, string>(allNameBoxes[i].Text, allValueBoxes[i].Text);
+                KeyValuePair<string, int> data = new KeyValuePair<string, int>(allNameBoxes[i].Text, (int)allValueBoxes[i].Value);
                 allData.Add(data);
             }
 
@@ -43,7 +43,7 @@ namespace Charting
         {
             InitializeComponent();
             allNameBoxes.Add(textBox1);
-            allValueBoxes.Add(textBox2);
+            allValueBoxes.Add(numericUpDown1);
 
             active = mainForm;
         }
@@ -74,14 +74,16 @@ namespace Charting
             Point newNLocation = new Point(previousN.Location.X, previousN.Location.Y + 40);
             newNameBox.Location = newNLocation;
 
-            TextBox newValueBox = new TextBox();
+            NumericUpDown newValueBox = new NumericUpDown();
             allValueBoxes.Add(newValueBox);
-            TextBox previousV = allValueBoxes[allValueBoxes.IndexOf(newValueBox) - 1];
+            NumericUpDown previousV = allValueBoxes[allValueBoxes.IndexOf(newValueBox) - 1];
             Point newVLocation = new Point(previousV.Location.X, previousV.Location.Y + 40);
             newValueBox.Location = newVLocation;
 
             newNameBox.TextAlign = HorizontalAlignment.Center;
             newValueBox.TextAlign = HorizontalAlignment.Center;
+
+            newValueBox.Maximum = 10000;
 
             this.Controls.Add(newValueBox);
             this.Controls.Add(newNameBox);
@@ -94,7 +96,7 @@ namespace Charting
             if (fields == MinFields) return; 
 
             TextBox lastN = allNameBoxes.Last();
-            TextBox lastV = allValueBoxes.Last();
+            NumericUpDown lastV = allValueBoxes.Last();
 
             allNameBoxes.Remove(lastN);
             allValueBoxes.Remove(lastV);

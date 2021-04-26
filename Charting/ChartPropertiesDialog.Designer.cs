@@ -32,12 +32,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SeriesNameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.WidthBox = new System.Windows.Forms.TextBox();
-            this.HeightBox = new System.Windows.Forms.TextBox();
             this.ApplyButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ChartTitleBox = new System.Windows.Forms.TextBox();
+            this.WidthBox = new System.Windows.Forms.NumericUpDown();
+            this.HeightBox = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.WidthBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeightBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ConfirmButton
@@ -79,22 +81,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Width / Height";
             // 
-            // WidthBox
-            // 
-            this.WidthBox.Location = new System.Drawing.Point(178, 197);
-            this.WidthBox.Name = "WidthBox";
-            this.WidthBox.Size = new System.Drawing.Size(49, 20);
-            this.WidthBox.TabIndex = 4;
-            this.WidthBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // HeightBox
-            // 
-            this.HeightBox.Location = new System.Drawing.Point(233, 197);
-            this.HeightBox.Name = "HeightBox";
-            this.HeightBox.Size = new System.Drawing.Size(49, 20);
-            this.HeightBox.TabIndex = 5;
-            this.HeightBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // ApplyButton
             // 
             this.ApplyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -134,17 +120,43 @@
             this.ChartTitleBox.TabIndex = 9;
             this.ChartTitleBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // WidthBox
+            // 
+            this.WidthBox.Location = new System.Drawing.Point(176, 197);
+            this.WidthBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.WidthBox.Name = "WidthBox";
+            this.WidthBox.Size = new System.Drawing.Size(51, 20);
+            this.WidthBox.TabIndex = 10;
+            this.WidthBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // HeightBox
+            // 
+            this.HeightBox.Location = new System.Drawing.Point(233, 197);
+            this.HeightBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.HeightBox.Name = "HeightBox";
+            this.HeightBox.Size = new System.Drawing.Size(51, 20);
+            this.HeightBox.TabIndex = 11;
+            this.HeightBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ChartPropertiesDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 611);
+            this.Controls.Add(this.HeightBox);
+            this.Controls.Add(this.WidthBox);
             this.Controls.Add(this.ChartTitleBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ApplyButton);
-            this.Controls.Add(this.HeightBox);
-            this.Controls.Add(this.WidthBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.SeriesNameBox);
             this.Controls.Add(this.label1);
@@ -154,6 +166,8 @@
             this.Name = "ChartPropertiesDialog";
             this.Text = "ChartPropertiesDialog";
             this.Load += new System.EventHandler(this.ChartPropertiesDialog_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.WidthBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HeightBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,11 +179,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox SeriesNameBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox WidthBox;
-        private System.Windows.Forms.TextBox HeightBox;
         private System.Windows.Forms.Button ApplyButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ChartTitleBox;
+        private System.Windows.Forms.NumericUpDown WidthBox;
+        private System.Windows.Forms.NumericUpDown HeightBox;
     }
 }

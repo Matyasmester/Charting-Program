@@ -17,6 +17,18 @@ namespace Charting
             InitializeComponent();
         }
 
+        public List<KeyValuePair<string, string>> GetCurrentProperties()
+        {
+            List<KeyValuePair<string, string>> properties = new List<KeyValuePair<string, string>>();
+
+            properties.Add(new KeyValuePair<string, string>("Width", MainChart.Width.ToString()));
+            properties.Add(new KeyValuePair<string, string>("Height", MainChart.Height.ToString()));
+            properties.Add(new KeyValuePair<string, string>("Title", MainChart.Titles[0].Text));
+            properties.Add(new KeyValuePair<string, string>("SeriesName", MainChart.Series[0].Name));
+
+            return properties;
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             Font font = new Font("Microsoft Sans Serif", 12f);
@@ -43,9 +55,9 @@ namespace Charting
             MainChart.Titles[0].Font = new Font("Microsoft Sans Serif", 12f);
         }
 
-        public void ApplyData(List<KeyValuePair<string, string>> allData)
+        public void ApplyData(List<KeyValuePair<string, int>> allData)
         {
-            foreach (KeyValuePair<string, string> piece in allData)
+            foreach (KeyValuePair<string, int> piece in allData)
             {
                 MainChart.Series[0].Points.AddXY(piece.Key, piece.Value);
             }
