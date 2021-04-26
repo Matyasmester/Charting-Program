@@ -19,6 +19,10 @@ namespace Charting
 
         MainForm active;
 
+        List<KeyValuePair<string, int>> cache;
+
+        bool HasSentData = false;
+
         const int MaxFields = 16;
         const int MinFields = 2;
 
@@ -36,7 +40,57 @@ namespace Charting
                 allData.Add(data);
             }
 
+            if (cache.All(allData.Contains) && cache.Count == allData.Count) return;
+
+            active.SaveCache(allData);
+
             pass(allData);
+        }
+
+        private void CreateNewNameBox()
+        {
+            TextBox newNameBox = new TextBox();
+            allNameBoxes.Add(newNameBox);
+            TextBox previousN = allNameBoxes[allNameBoxes.IndexOf(newNameBox) - 1];
+            Point newNLocation = new Point(previousN.Location.X, previousN.Location.Y + 40);
+            newNameBox.Location = newNLocation;
+
+            newNameBox.TextAlign = HorizontalAlignment.Center;
+
+            this.Controls.Add(newNameBox);
+        }
+
+        private void CreateNewValueBox()
+        {
+            NumericUpDown newValueBox = new NumericUpDown();
+            allValueBoxes.Add(newValueBox);
+            NumericUpDown previousV = allValueBoxes[allValueBoxes.IndexOf(newValueBox) - 1];
+            Point newVLocation = new Point(previousV.Location.X, previousV.Location.Y + 40);
+            newValueBox.Location = newVLocation;
+
+            newValueBox.TextAlign = HorizontalAlignment.Center;
+
+            newValueBox.Maximum = 10000;
+
+            this.Controls.Add(newValueBox);
+        }
+
+        private void RemoveLastNameBox()
+        {
+            TextBox lastN = allNameBoxes.Last();
+
+            allNameBoxes.Remove(lastN);
+
+            this.Controls.Remove(lastN);
+        }
+
+        private void RemoveLastValueBox()
+        {
+            NumericUpDown lastV = allValueBoxes.Last();
+
+            allValueBoxes.Remove(lastV);
+
+            this.Controls.Remove(lastV);
         }
 
         public ManageDataDialog(MainForm mainForm)
@@ -46,6 +100,23 @@ namespace Charting
             allValueBoxes.Add(numericUpDown1);
 
             active = mainForm;
+
+            cache = active.LoadCache();
+
+            if (!cache.Any()) return;
+            else
+            {
+                foreach (KeyValuePair<string, int> piece in cache)
+                {
+                    allNameBoxes.Last().Text = piece.Key;
+                    allValueBoxes.Last().Value = piece.Value;
+
+                    CreateNewNameBox();
+                    CreateNewValueBox();
+                }
+                RemoveLastNameBox();
+                RemoveLastValueBox();
+            }
         }
 
         private void ManageDataDialog_Load(object sender, EventArgs e)
@@ -55,54 +126,39 @@ namespace Charting
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            SendData();
-            this.Close();
+            if (HasSentData) this.Close();
+            else
+            {
+                SendData();
+                this.Close();
+            }
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
+            if (HasSentData) return;
             SendData();
+            HasSentData = true;
         }
 
         private void PlusButton_Click(object sender, EventArgs e)
         {
             if (fields == MaxFields) return;
 
-            TextBox newNameBox = new TextBox();
-            allNameBoxes.Add(newNameBox);
-            TextBox previousN = allNameBoxes[allNameBoxes.IndexOf(newNameBox) - 1];
-            Point newNLocation = new Point(previousN.Location.X, previousN.Location.Y + 40);
-            newNameBox.Location = newNLocation;
+            CreateNewNameBox();
 
-            NumericUpDown newValueBox = new NumericUpDown();
-            allValueBoxes.Add(newValueBox);
-            NumericUpDown previousV = allValueBoxes[allValueBoxes.IndexOf(newValueBox) - 1];
-            Point newVLocation = new Point(previousV.Location.X, previousV.Location.Y + 40);
-            newValueBox.Location = newVLocation;
-
-            newNameBox.TextAlign = HorizontalAlignment.Center;
-            newValueBox.TextAlign = HorizontalAlignment.Center;
-
-            newValueBox.Maximum = 10000;
-
-            this.Controls.Add(newValueBox);
-            this.Controls.Add(newNameBox);
+            CreateNewValueBox();
 
             fields = allNameBoxes.Count + allValueBoxes.Count;
         }
 
         private void MinusButton_Click(object sender, EventArgs e)
         {
-            if (fields == MinFields) return; 
+            if (fields == MinFields) return;
 
-            TextBox lastN = allNameBoxes.Last();
-            NumericUpDown lastV = allValueBoxes.Last();
+            RemoveLastNameBox();
 
-            allNameBoxes.Remove(lastN);
-            allValueBoxes.Remove(lastV);
-
-            this.Controls.Remove(lastN);
-            this.Controls.Remove(lastV);
+            RemoveLastValueBox();
 
             fields = allNameBoxes.Count + allValueBoxes.Count;
         }

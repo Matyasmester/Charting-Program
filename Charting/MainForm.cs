@@ -17,6 +17,8 @@ namespace Charting
             InitializeComponent();
         }
 
+        List<KeyValuePair<string, int>> DataCache = new List<KeyValuePair<string, int>>();
+
         public List<KeyValuePair<string, string>> GetCurrentProperties()
         {
             List<KeyValuePair<string, string>> properties = new List<KeyValuePair<string, string>>();
@@ -27,6 +29,16 @@ namespace Charting
             properties.Add(new KeyValuePair<string, string>("SeriesName", MainChart.Series[0].Name));
 
             return properties;
+        }
+
+        public void SaveCache(List<KeyValuePair<string, int>> cache)
+        {
+            DataCache = cache;
+        }
+
+        public List<KeyValuePair<string, int>> LoadCache()
+        {
+            return DataCache;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
