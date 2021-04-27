@@ -67,6 +67,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveChartDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveChartDialog.Designer.cs">
+      <DependentUpon>SaveChartDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ChartPropertiesDialog.resx">
       <DependentUpon>ChartPropertiesDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +91,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SaveChartDialog.resx">
+      <DependentUpon>SaveChartDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

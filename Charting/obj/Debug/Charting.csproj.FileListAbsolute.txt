@@ -10,3 +10,4 @@ C:\Cs Projects\Charting\Charting\obj\Debug\Charting.exe
 C:\Cs Projects\Charting\Charting\obj\Debug\Charting.pdb
 C:\Cs Projects\Charting\Charting\obj\Debug\Charting.ChartPropertiesDialog.resources
 C:\Cs Projects\Charting\Charting\obj\Debug\Charting.ManageDataDialog.resources
+C:\Cs Projects\Charting\Charting\obj\Debug\Charting.SaveChartDialog.resources
